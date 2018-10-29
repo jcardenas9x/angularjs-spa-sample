@@ -1,11 +1,14 @@
 const { src, dest, series } = require('gulp');
 
 function copyAngularJS() {
-    return src('node_modules/angular/*.js')
-        .pipe(src('node_modules/angular-animate/*.js'))
-        .pipe(src('node_modules/angular-aria/*.js'))
-        .pipe(src('node_modules/angular-messages/*.js'))
-        .pipe(src('node_modules/angular-material/*.js'))
+    return src('node_modules/angular/*')
+        .pipe(src('node_modules/angular-animate/*'))
+        .pipe(src('node_modules/angular-aria/*.'))
+        .pipe(src('node_modules/angular-messages/*'))
+        .pipe(src('node_modules/angular-material/*'))
+        .pipe(src('node_modules/angular-route/*'))
+        .pipe(src('node_modules/angular-resource/*'))
+        .pipe(src('node_modules/angular-cookies/*'))
         .pipe(dest('app/assets/js/angular/'));
 };
 

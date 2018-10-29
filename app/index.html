@@ -5,21 +5,48 @@
         <meta charset="utf-8">
         <title>SPA: Giving Feedback!</title>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="app.css" >
         <link rel="stylesheet" href="./assets/css/angular-material.min.css" >
+
 
     </head>
     
-    <body ng-app="spaFeedbackApp">
+    <body ng-app="spaFeedbackApp" ng-cloak>
 
-        <p>Nothing here yet</p>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <md-button ng-href="#!home" aria-label="Home">Home</md-button>
+                <md-button aria-label="Send Feedback">Send!</md-button>
+                <md-button ng-href="#!admin" class="md-raised md-accent md-hue-3" aria-label="Administrator Login">
+                    Admin
+                </md-button>
+                <md-button class="md-raised md-accent md-hue-3" aria-label="Logout" ng-show="{{globals.currentUser}}">
+                    Logout
+                </md-button>
+            </div>
+        </md-toolbar>
+        
+        <div class="flexbox-parent" ng-view>
+
+        </div>
 
         <script src="./assets/js/angular/angular.min.js" ></script>
         <script src="./assets/js/angular/angular-aria.min.js"></script>
         <script src="./assets/js/angular/angular-animate.min.js"></script>
         <script src="./assets/js/angular/angular-messages.min.js"></script>
+        <script src="./assets/js/angular/angular-route.min.js"></script>
+        <script src="./assets/js/angular/angular-cookies.min.js"></script>
         <script src="./assets/js/angular/angular-material.min.js"></script>
         <script src="./assets/js/lokijs/lokijs.js"></script>
         <script src="./assets/js/lokijs/loki-angular.js"></script>
+        <script src="app.module.js"></script>
+        <script src="app.config.js"></script>
+        <script src="core/db/db.module.js"></script>
+        <script src="core/db/db.service.js"></script>
+        <script src="core/core.module.js"></script>
+        <script src="admin/admin.module.js"></script>
+        <script src="admin/admin.service.js"></script>
+        <script src="admin/admin.controller.js"></script>
 
     </body>
 </html>
