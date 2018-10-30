@@ -8,6 +8,17 @@ app.controller('AdminController', function ($scope, $rootScope, $route, AdminAut
     $scope.username = "";
     $scope.password = "";
     $scope.errorMsg = false;
+    $scope.showSingleComment = false;
+    $scope.highlightComment = {
+        email: "",
+        comment: "",
+        images: [],
+        senddate: null
+    };
+
+    CoreDB.getComments().then(function (result) {
+        $rootScope.commentList = result;
+    });
 
     $scope.login = function () {
         $scope.isLoading = true;
@@ -28,6 +39,21 @@ app.controller('AdminController', function ($scope, $rootScope, $route, AdminAut
     $scope.logout = function () {
         AdminAuthenticator.clearCredentials();
         $route.reload();
+    }
+
+    $scope.highlight = function (item) {
+        $scope.highlightComment = item;
+        $scope.showSingleComment = true;
+    }
+
+    $scope.return = function () {
+        $scope.highlightComment = {
+            email: "",
+            comment: "",
+            images: [],
+            senddate: null
+        };
+        $scope.showSingleComment = false;
     }
 
 });

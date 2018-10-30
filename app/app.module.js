@@ -16,6 +16,6 @@ angular.module('spaFeedbackApp', [
         $rootScope.globals = $cookieStore.get('globals') || { currentUser: null };
         CoreDB.getComments().then(function (result) {
             $rootScope.commentList = result;
-        })
+        });
     }
 ]);

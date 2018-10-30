@@ -9,6 +9,7 @@ Example SPA built with very old version of AngularJS (1.5.11)
 * For `localhost` usage, you would need to install [Allow-Control-Allow-Origin:*](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi) made by vitvad for CORS
 * It would be useful if your system already had `node` and `gulp` prepared.
 * If not, navigating to the root of this project and running `npm start` would do.
+* It is also possible to use `ngrok` to tunnel to `localhost:8000`!
 
 ### steps
 
