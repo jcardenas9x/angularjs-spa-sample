@@ -2,7 +2,7 @@
 
 var app = angular.module('Administrator');
 
-app.controller('AdminController', function ($scope, $rootScope, $route, AdminAuthenticator) {
+app.controller('AdminController', function ($scope, $rootScope, $route, AdminAuthenticator, CoreDB) {
 
     $scope.dataLoading = false;
     $scope.username = "";

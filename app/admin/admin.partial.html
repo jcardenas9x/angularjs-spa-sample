@@ -1,19 +1,19 @@
-<md-content class="md-padding" layout="column" layout-align="center center" style="min-height: 100px">
-    <div flex-gt-xs="60" flex-xs="40" ng-hide="{{globals.currentUser != null}}" layout-align="center center">
+<md-content class="md-padding" layout="row" layout-xs="column" layout-align="center center" style="min-height: 100px;">
+    <div flex-gt-xs="40" flex-xs="25" ng-hide="{{globals.currentUser != null}}" layout-align="center center">
         <h2>Administrator Login</h2>
         <form name="adminLogin" ng-submit="login()" role="form">
-            <md-whiteframe class="md-whiteframe-3dp" layout layout-align="center center" ng-show="errorMsg">
+            <md-whiteframe class="md-whiteframe-3dp" style="padding: 1em;" layout layout-align="center center" ng-show="errorMsg">
                 <span>Invalid user credentials.</span>
             </md-whiteframe> <br/>
             <md-input-container class="md-block">
-                <label>Username</label>
+                <label>Username (default: root)</label>
                 <input required name="username" ng-model="username" type="text">
                 <div ng-messages="adminLogin.username.$error">
                     <div ng-message="required">Your username is required.</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
-                <label>Password</label>
+                <label>Password (default: 123)</label>
                 <input required name="password" ng-model="password" type="password">
                 <div ng-messages="adminLogin.password.$error">
                     <div ng-message="required">Password is required.</div>
@@ -24,18 +24,27 @@
                 type="submit">
                     Login
             </md-button>
+            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </form>
     </div>
-    <div flex-gt-xs="60" flex-xs="40" ng-show="{{globals.currentUser != null}}">
+    <div flex-gt-xs="60" flex-xs="25" ng-show="{{globals.currentUser != null}}">
         <h2>Welcome to Admin Panel!</h2>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <md-button class="md-raised md-warn" ng-click="logout()">
-                    Logout!
+                    Logout
                 </md-button>
                 <h2 flex md-truncate>Feedback List</h2>
             </div>
         </md-toolbar>
-
+        <md-list>
+            <md-list-item ng-repeat="feedback in commentList">
+                <p>
+                    <b>[{{feedback.senddate}}]</b>:
+                    {{ feedback.comment | limitTo:140 }} --- <b>{{ feedback.email }}</b>
+                </p>
+                <md-button class="md-secondary">More...</md-button>
+            </md-list-item>
+        </md-list>
     </div>
 </md-content>

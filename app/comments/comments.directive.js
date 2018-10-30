@@ -16,7 +16,7 @@ app.directive('ngFileParser', ['$parse', function ($parse) {
                         name: item.name,
                         size: item.size,
                         url: URL.createObjectURL(item),
-                        _file: item
+                        file: item
                     };
                     values.push(value);
                 });
@@ -26,7 +26,6 @@ app.directive('ngFileParser', ['$parse', function ($parse) {
                     else
                         modelSetter(scope, values[0]);
                 });
-                console.log(values);
             })
         }
     }

@@ -1,12 +1,16 @@
-<md-content class="md-padding" layout="column" layout-align="center center" style="min-height: 300px">
-    <div flex-gt-xs="60" flex-xs="25">
-        <form name="submitComment">
+<md-content class="md-padding" layout="row" layout-xs="column" layout-align="center center" style="min-height: 300px">
+    <div flex-gt-xs="40" flex-xs="25">
+        <h2>Send Us Feedback!</h2><br />
+        <form name="submitComment" ng-submit="sendFeedback()">
+            <md-whiteframe class="md-whiteframe-3dp" style="padding: 1em;" layout layout-align="center center" ng-show="error">
+                <span>{{msg}}</span>
+            </md-whiteframe> <br/>
             <md-input-container class="md-block">
                 <label>Email Address</label>
                 <input required name="emailAddress" ng-model="feedback.email" type="email">
                 <div ng-messages="submitComment.emailAddress.$error">
                     <div ng-message="required">Your email address is required.</div>
-                    <div ng-message="pattern">Invalid email address</div>
+                    <div ng-message="email">Invalid email address</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
@@ -18,7 +22,10 @@
                 </div>
             </md-input-container>
             <input type="file" ng-file-parser="files" multiple>
-            <md-button class="md-raised" type="submit">Submit</md-button> 
+            <md-button layout-align="right" class="md-raised md-primary" 
+                ng-disabled="submitComment.$invalid || loading"
+                type="submit">Submit</md-button>
+            <img ng-if="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </form>
     </div>
 </md-content>

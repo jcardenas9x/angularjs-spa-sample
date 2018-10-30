@@ -14,6 +14,8 @@ angular.module('spaFeedbackApp', [
     function ($rootScope, $location, $cookieStore, CoreDB) {
         CoreDB.initDB();
         $rootScope.globals = $cookieStore.get('globals') || { currentUser: null };
-        console.log($rootScope.globals);
+        CoreDB.getComments().then(function (result) {
+            $rootScope.commentList = result;
+        })
     }
 ]);

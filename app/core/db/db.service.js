@@ -12,7 +12,7 @@ app.factory('CoreDB', ['$q', 'Loki',
         var dbService = {
             initDB: initializeDb,
             loadHandler: loadHandler,
-            addComments: addComments,
+            addComment: addComment,
             getComments: getComments,
             getUser: getUser
         }
@@ -30,7 +30,7 @@ app.factory('CoreDB', ['$q', 'Loki',
 
         function loadHandler () {
             users = _feedbackDB.getCollection('users');
-            comments = _feedbackDB.getCollection('comments') || feedbackDB.addCollection('comments');
+            comments = _feedbackDB.getCollection('comments') || _feedbackDB.addCollection('comments');
             if (!users) {
                 users = _feedbackDB.addCollection('users');
                 users.insert({username:"root",password:"123"});
@@ -38,22 +38,13 @@ app.factory('CoreDB', ['$q', 'Loki',
             }
         };
 
-        function addComments (comment) {
-            if (!comment.email || !comment.content) {
-                return false;
-            } else {
-                comments.insert(comment);
-                return true;
-            }
-        }
-
         function getComments () {
             return $q(function (resolve, reject) {
                 var opts = {};
                 _feedbackDB.loadDatabase(opts, function () {
-                    comments = feedbackDB.getCollection('comments');
-                    resultSet = comments.chain().simplesort('date', true);
-                    resolve(resultSet.data);
+                    comments = _feedbackDB.getCollection('comments');
+                    resultSet = comments.chain().simplesort('senddate', true);
+                    resolve(resultSet.data());
                 });
             });
         }
@@ -67,6 +58,10 @@ app.factory('CoreDB', ['$q', 'Loki',
                     resolve(resultSet);
                 });
             })
+        }
+
+        function addComment (comment) {
+            comments.insert(comment);
         }
 
     }
