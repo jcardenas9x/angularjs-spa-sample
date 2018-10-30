@@ -1,0 +1,24 @@
+<md-content class="md-padding" layout="column" layout-align="center center" style="min-height: 300px">
+    <div flex-gt-xs="60" flex-xs="25">
+        <form name="submitComment">
+            <md-input-container class="md-block">
+                <label>Email Address</label>
+                <input required name="emailAddress" ng-model="feedback.email" type="email">
+                <div ng-messages="submitComment.emailAddress.$error">
+                    <div ng-message="required">Your email address is required.</div>
+                    <div ng-message="pattern">Invalid email address</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Feedback</label>
+                <textarea required name="feedback" ng-model="feedback.comment" rows="3" md-select-on-focus>
+                </textarea>
+                <div ng-messages="submitComment.feedback.$error">
+                    <div ng-message="required">Your feedback is required.</div>
+                </div>
+            </md-input-container>
+            <input type="file" ng-file-parser="files" multiple>
+            <md-button class="md-raised" type="submit">Submit</md-button> 
+        </form>
+    </div>
+</md-content>

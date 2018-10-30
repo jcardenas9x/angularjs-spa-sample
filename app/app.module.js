@@ -8,9 +8,12 @@ angular.module('spaFeedbackApp', [
     'lokijs',
     'core',
     'core.db',
-    'Administrator'
-]).run(['$rootScope', '$location', '$cookieStore', 
-    function ($rootScope, $location, $cookieStore) {
+    'Administrator',
+    'sendComments'
+]).run(['$rootScope', '$location', '$cookieStore', 'CoreDB',
+    function ($rootScope, $location, $cookieStore, CoreDB) {
+        CoreDB.initDB();
         $rootScope.globals = $cookieStore.get('globals') || { currentUser: null };
+        console.log($rootScope.globals);
     }
 ]);

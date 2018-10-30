@@ -22,14 +22,15 @@ app.factory('AdminAuthenticator', ['$cookieStore', '$rootScope', 'CoreDB',
                 loginSuccess: false,
                 message: ""
             };
-            var record = CoreDB.getUser(user);
-            if (record) {
-                response["loginSuccess"] = true;
-                response["message"] = "Login success!";
-            } else {
-                response["message"] = "Login failed because username or password is incorrect";
-            }
-            callback(response);
+            CoreDB.getUser(user).then(function (record) {
+                if (record) {
+                    response["loginSuccess"] = true;
+                    response["message"] = "Login success!";
+                } else {
+                    response["message"] = "Login failed because username or password is incorrect";
+                }
+                callback(response);
+            });
         }
 
         function setCredentials (username) {

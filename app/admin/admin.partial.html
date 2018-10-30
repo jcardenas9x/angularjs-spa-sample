@@ -1,8 +1,41 @@
 <md-content class="md-padding" layout="column" layout-align="center center" style="min-height: 100px">
-    <div flex-gt-xs="60" flex-xs="35" ng-hide="{{globals.currentUser}}">
-        
+    <div flex-gt-xs="60" flex-xs="40" ng-hide="{{globals.currentUser != null}}" layout-align="center center">
+        <h2>Administrator Login</h2>
+        <form name="adminLogin" ng-submit="login()" role="form">
+            <md-whiteframe class="md-whiteframe-3dp" layout layout-align="center center" ng-show="errorMsg">
+                <span>Invalid user credentials.</span>
+            </md-whiteframe> <br/>
+            <md-input-container class="md-block">
+                <label>Username</label>
+                <input required name="username" ng-model="username" type="text">
+                <div ng-messages="adminLogin.username.$error">
+                    <div ng-message="required">Your username is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Password</label>
+                <input required name="password" ng-model="password" type="password">
+                <div ng-messages="adminLogin.password.$error">
+                    <div ng-message="required">Password is required.</div>
+                </div>
+            </md-input-container>
+            <md-button class="md-raised md-primary" 
+                ng-disabled="adminLogin.$invalid || dataLoading" 
+                type="submit">
+                    Login
+            </md-button>
+        </form>
     </div>
-    <div flex-gt-xs="60" flex-xs="35" ng-show="{{globals.currentUser}}">
+    <div flex-gt-xs="60" flex-xs="40" ng-show="{{globals.currentUser != null}}">
+        <h2>Welcome to Admin Panel!</h2>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <md-button class="md-raised md-warn" ng-click="logout()">
+                    Logout!
+                </md-button>
+                <h2 flex md-truncate>Feedback List</h2>
+            </div>
+        </md-toolbar>
 
     </div>
 </md-content>

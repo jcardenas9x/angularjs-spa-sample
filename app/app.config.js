@@ -11,8 +11,15 @@ angular.module('spaFeedbackApp')
                 when('/home', {
                     templateUrl: '../home/home.html'
                 }).
+                when('/add', {
+                    controller: 'addFeedbackController',
+                    templateUrl: '../comments/comments.partial.html',
+                    controllerAs: 'feedbackVM'
+                }).
                 when('/admin', {
-                    templateUrl: '../admin/admin.partial.html'
+                    controller: 'AdminController',
+                    templateUrl: '../admin/admin.partial.html',
+                    controllerAs: 'adminVM'
                 })
                 .otherwise('/home');
         }

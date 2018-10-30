@@ -16,12 +16,9 @@
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <md-button ng-href="#!home" aria-label="Home">Home</md-button>
-                <md-button aria-label="Send Feedback">Send!</md-button>
+                <md-button ng-href="#!add" aria-label="Send Feedback">Send!</md-button>
                 <md-button ng-href="#!admin" class="md-raised md-accent md-hue-3" aria-label="Administrator Login">
                     Admin
-                </md-button>
-                <md-button class="md-raised md-accent md-hue-3" aria-label="Logout" ng-show="{{globals.currentUser}}">
-                    Logout
                 </md-button>
             </div>
         </md-toolbar>
@@ -47,6 +44,9 @@
         <script src="admin/admin.module.js"></script>
         <script src="admin/admin.service.js"></script>
         <script src="admin/admin.controller.js"></script>
+        <script src="comments/comments.module.js"></script>
+        <script src="comments/comments.directive.js"></script>
+        <script src="comments/comments.controller.js"></script>
 
     </body>
 </html>

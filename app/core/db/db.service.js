@@ -2,9 +2,9 @@
 
 var app = angular.module('core.db');
 
-app.factory('CoreDB', ['Loki', 
-    function (Loki) {
-        var feedbackDB;
+app.factory('CoreDB', ['$q', 'Loki', 
+    function ($q, Loki) {
+        var _feedbackDB;
         var users;
         var comments; 
         var resultSet;
@@ -20,7 +20,7 @@ app.factory('CoreDB', ['Loki',
         return dbService;
 
         function initializeDb () {
-            feedbackDB = new Loki('feedback.db', {
+            _feedbackDB = new Loki('feedback.db', {
                 autoload: true,
                 autoloadCallback: loadHandler,
                 autosave: true,
@@ -29,12 +29,12 @@ app.factory('CoreDB', ['Loki',
         }
 
         function loadHandler () {
-            users = feedbackDB.getCollection('users');
-            comments = feedbackDB.getCollection('comments') || feedbackDB.addCollection('comments');
+            users = _feedbackDB.getCollection('users');
+            comments = _feedbackDB.getCollection('comments') || feedbackDB.addCollection('comments');
             if (!users) {
-                users = feedbackDB.addCollection('users');
+                users = _feedbackDB.addCollection('users');
                 users.insert({username:"root",password:"123"});
-                feedbackDB.saveDatabase();
+                _feedbackDB.saveDatabase();
             }
         };
 
@@ -43,22 +43,30 @@ app.factory('CoreDB', ['Loki',
                 return false;
             } else {
                 comments.insert(comment);
-                feedbackDB.saveDatabase();
                 return true;
             }
         }
 
-        function getComments ($q) {
-            resultSet = comments.chain().simplesort("date", true).data();
-            return resultSet;
+        function getComments () {
+            return $q(function (resolve, reject) {
+                var opts = {};
+                _feedbackDB.loadDatabase(opts, function () {
+                    comments = feedbackDB.getCollection('comments');
+                    resultSet = comments.chain().simplesort('date', true);
+                    resolve(resultSet.data);
+                });
+            });
         }
 
         function getUser (user) {
-            var checkUser;
-            checkUser = users.chain().findOne({
-                username: user["username"], password: user["password"]
-            });
-            return checkUser;
+            return $q(function (resolve, reject) {
+                var opts = {};
+                _feedbackDB.loadDatabase(opts, function () {
+                    users = _feedbackDB.getCollection('users');
+                    resultSet = users.findOne({username:user["username"], password:user["password"]});
+                    resolve(resultSet);
+                });
+            })
         }
 
     }
