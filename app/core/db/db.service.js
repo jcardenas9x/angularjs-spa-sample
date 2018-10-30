@@ -42,7 +42,7 @@ app.factory('CoreDB', ['$q', 'Loki',
             return $q(function (resolve, reject) {
                 var opts = {};
                 _feedbackDB.loadDatabase(opts, function () {
-                    comments = _feedbackDB.getCollection('comments');
+                    comments = _feedbackDB.getCollection('comments') || _feedbackDB.addCollection('comments');
                     resultSet = comments.chain().simplesort('senddate', true);
                     resolve(resultSet.data());
                 });

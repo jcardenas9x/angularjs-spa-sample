@@ -1,8 +1,8 @@
-<md-content class="md-padding" layout="row" layout-xs="column" layout-align="center center" style="min-height: 100px;">
+<md-content class="md-padding view-content" layout="row" layout-xs="column" layout-align="center center">
     <div flex-gt-xs="40" flex-xs="25" ng-hide="{{globals.currentUser != null}}" layout-align="center center">
         <h2>Administrator Login</h2>
         <form name="adminLogin" ng-submit="login()" role="form">
-            <md-whiteframe class="md-whiteframe-3dp" style="padding: 1em;" layout layout-align="center center" ng-show="errorMsg">
+            <md-whiteframe class="md-whiteframe-3dp error-warning" layout layout-align="center center" ng-show="errorMsg">
                 <span>Invalid user credentials.</span>
             </md-whiteframe> <br/>
             <md-input-container class="md-block">
@@ -28,7 +28,7 @@
         </form>
     </div>
     <div flex-gt-xs="60" flex-xs="25" ng-show="{{globals.currentUser != null}}">
-        <h2>Welcome to Admin Panel!</h2>
+        <h2>Welcome to Admin Panel, {{ globals.currentUser }}!</h2>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <md-button class="md-raised md-warn" ng-click="logout()">
@@ -41,7 +41,7 @@
             </div>
         </md-toolbar>
         <md-list flex ng-hide="showSingleComment">
-            <md-list-item class="md-3-line" ng-repeat="feedback in commentList track by $index" ng-click="highlight(feedback)">
+            <md-list-item class="md-3-line item-prettify" ng-repeat="feedback in commentList track by $index" ng-click="highlight(feedback)">
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ feedback.email }}</h3>
                     <h4>Sent at  {{ feedback.senddate | date:'medium' }}</h4>
@@ -49,14 +49,14 @@
                 </div>
             </md-list-item>
         </md-list>
-        <md-content class="md-padding" ng-show="showSingleComment" layout-padding>
+        <md-content class="md-padding single-comment-window" ng-show="showSingleComment" layout-padding>
             <section>
                 <h2>{{ highlightComment.email }}</h2>
                 <h4>Sent at {{ highlightComment.senddate | date:'medium' }}</h4>
                 <p>{{ highlightComment.comment }}</p>
             </section>
             <section ng-show="highlightComment.images.length > 0">
-                <md-subheader class="md-warn">Attached Photos</md-subheader>
+                <md-subheader class="md-warn attached-photo-indicator">Attached Photos</md-subheader>
                 <div ng-repeat="url in highlightComment.images">
                     <img ng-src="{{ url }}" style="max-height: 150px; max-width: 300px; padding: 1em; display: inline-block;">
                 </div>

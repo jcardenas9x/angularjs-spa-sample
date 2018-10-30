@@ -4,6 +4,7 @@ angular.module('spaFeedbackApp', [
     'ngMaterial',
     'ngMessages',
     'ngRoute',
+    'ngAnimate',
     'ngCookies',
     'lokijs',
     'core',

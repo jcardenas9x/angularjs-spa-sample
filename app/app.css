@@ -5,3 +5,23 @@ html, body {
     margin: 0px;
     padding: 0px;
 }
+
+.single-comment-window {
+    background-color: lightcyan;
+}
+
+.item-prettify {
+    background-color: lightcyan;
+    opacity: 0.7%;
+}
+
+.attached-photo-indicator {
+    background-color: cyan;
+    border-left: 6px solid blue;
+}
+
+.error-warning {
+    border-left: 6px solid red;
+    background-color: cyan;
+    padding: 1em;
+}

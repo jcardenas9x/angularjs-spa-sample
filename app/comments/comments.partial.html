@@ -1,8 +1,8 @@
-<md-content class="md-padding" layout="row" layout-xs="column" layout-align="center center" style="min-height: 300px">
+<md-content class="md-padding view-content" layout="row" layout-xs="column" layout-align="center center">
     <div flex-gt-xs="40" flex-xs="25">
         <h2>Send Us Feedback!</h2><br />
         <form name="submitComment" ng-submit="sendFeedback()">
-            <md-whiteframe class="md-whiteframe-3dp" style="padding: 1em;" layout layout-align="center center" ng-show="error">
+            <md-whiteframe class="md-whiteframe-3dp error-warning" style="padding: 1em;" layout layout-align="center center" ng-show="error">
                 <span>{{msg}}</span>
             </md-whiteframe> <br/>
             <md-input-container class="md-block">

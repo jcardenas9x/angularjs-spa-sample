@@ -6,6 +6,7 @@
         <title>SPA: Giving Feedback!</title>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="app.css" >
+        <link rel="stylesheet" href="app.animations.css" >
         <link rel="stylesheet" href="./assets/css/angular-material.min.css" >
 
 
@@ -23,9 +24,12 @@
             </div>
         </md-toolbar>
         
-        <div class="flexbox-parent" layout="column" ng-view>
+        <div class="view-frame-container">
+            <div class="flexbox-parent view-frame" layout="column" ng-view>
 
+            </div>
         </div>
+
 
         <script src="./assets/js/angular/angular.min.js" ></script>
         <script src="./assets/js/angular/angular-aria.min.js"></script>
