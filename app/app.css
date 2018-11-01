@@ -25,3 +25,10 @@ html, body {
     background-color: cyan;
     padding: 1em;
 }
+
+.comment-img {
+    max-height: 150px; 
+    max-width: 300px; 
+    float: left; 
+    padding: 1em;
+}

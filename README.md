@@ -16,6 +16,7 @@ Example SPA built with very old version of AngularJS (1.5.11)
 * Clone or download this repo
 * Navigate to root, then `npm start` on a machine with `npm` and `node` installed.
 * Website will run locally via `http-server`
+* When the command prompt says the app is listening, access the site at `http://localhost:8000`
 
 ### what made this possible
 

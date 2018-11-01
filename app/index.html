@@ -8,16 +8,35 @@
         <link rel="stylesheet" href="app.css" >
         <link rel="stylesheet" href="app.animations.css" >
         <link rel="stylesheet" href="./assets/css/angular-material.min.css" >
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     </head>
     
     <body ng-app="spaFeedbackApp" ng-cloak>
 
         <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
+            <md-menu hide show-xs ng-controller="MenuCtrl as mc">
+                <md-button aria-label="Display menu routes on small screens" 
+                    ng-click="mc.openMenu($mdOpenMenu, $event)"
+                    class="md-icon-button"
+                    >
+                    <md-icon md-menu-origin md-font-set="material-icons">menu</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-href="#!home" aria-label="Home">Home</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-href="#!add" aria-label="Send Feedback">Send Feedback</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-href="#!admin" aria-label="Administrator Login">Admin</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <div hide show-gt-xs flex class="md-toolbar-tools" >
                 <md-button ng-href="#!home" aria-label="Home">Home</md-button>
-                <md-button ng-href="#!add" aria-label="Send Feedback">Send!</md-button>
+                <md-button ng-href="#!add" aria-label="Send Feedback">Send Feedback</md-button>
                 <md-button ng-href="#!admin" class="md-raised md-accent md-hue-3" aria-label="Administrator Login">
                     Admin
                 </md-button>
@@ -40,8 +59,10 @@
         <script src="./assets/js/angular/angular-material.min.js"></script>
         <script src="./assets/js/lokijs/lokijs.js"></script>
         <script src="./assets/js/lokijs/loki-angular.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ng-image-appear@1.11.6/dist/ng-image-appear.min.js"></script>
         <script src="app.module.js"></script>
         <script src="app.config.js"></script>
+        <script src="app.controller.js"></script>
         <script src="core/db/db.module.js"></script>
         <script src="core/db/db.service.js"></script>
         <script src="core/core.module.js"></script>

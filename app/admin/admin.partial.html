@@ -1,19 +1,21 @@
-<md-content class="md-padding view-content" layout="row" layout-xs="column" layout-align="center center">
+<md-content class="md-padding view-content" layout="row" layout-xs="column" layout-align="center start">
     <div flex-gt-xs="40" flex-xs="25" ng-hide="{{globals.currentUser != null}}" layout-align="center center">
         <h2>Administrator Login</h2>
         <form name="adminLogin" ng-submit="login()" role="form">
             <md-whiteframe class="md-whiteframe-3dp error-warning" layout layout-align="center center" ng-show="errorMsg">
                 <span>Invalid user credentials.</span>
             </md-whiteframe> <br/>
-            <md-input-container class="md-block">
-                <label>Username (default: root)</label>
+            <md-input-container class="md-icon-float md-block">
+                <md-icon md-font-set="material-icons">person</md-icon>
+                <label>Username</label>
                 <input required name="username" ng-model="username" type="text">
                 <div ng-messages="adminLogin.username.$error">
                     <div ng-message="required">Your username is required.</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block">
-                <label>Password (default: 123)</label>
+            <md-input-container class="md-icon-float md-block">
+                <md-icon md-font-set="material-icons">code</md-icon>
+                <label>Password</label>
                 <input required name="password" ng-model="password" type="password">
                 <div ng-messages="adminLogin.password.$error">
                     <div ng-message="required">Password is required.</div>
@@ -31,13 +33,13 @@
         <h2>Welcome to Admin Panel, {{ globals.currentUser }}!</h2>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <md-button class="md-raised md-warn" ng-click="logout()">
-                    Logout
-                </md-button>
-                <md-button class="md-raised md-primary" ng-show="showSingleComment" ng-click="return()">
-                    Return
+                <md-button class="md-fab md-mini" ng-click="logout()">
+                    <md-icon md-font-set="material-icons">power_settings_new</md-icon>
                 </md-button>
                 <h2 flex md-truncate>Feedback List</h2>
+                <md-button class="md-fab md-mini" ng-show="showSingleComment" ng-click="return()">
+                    <md-icon md-font-set="material-icons">chevron_left</md-icon>
+                </md-button>
             </div>
         </md-toolbar>
         <md-list flex ng-hide="showSingleComment">
@@ -51,14 +53,19 @@
         </md-list>
         <md-content class="md-padding single-comment-window" ng-show="showSingleComment" layout-padding>
             <section>
-                <h2>{{ highlightComment.email }}</h2>
+                <h2>Feedback sent in from {{ highlightComment.email }}</h2>
                 <h4>Sent at {{ highlightComment.senddate | date:'medium' }}</h4>
                 <p>{{ highlightComment.comment }}</p>
             </section>
             <section ng-show="highlightComment.images.length > 0">
                 <md-subheader class="md-warn attached-photo-indicator">Attached Photos</md-subheader>
                 <div ng-repeat="url in highlightComment.images">
-                    <img ng-src="{{ url }}" style="max-height: 150px; max-width: 300px; padding: 1em; display: inline-block;">
+                    <img ng-src="{{ url }}" 
+                        class="comment-img"
+                        ng-image-appear
+                        responsive
+                        loader-img="../assets/ajax-loader.gif"
+                        placeholder>
                 </div>
             </section>
         </md-content>

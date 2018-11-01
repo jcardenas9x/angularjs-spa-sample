@@ -4,8 +4,8 @@ var app = angular.module('sendComments');
 
 app.controller('addFeedbackController', function ($scope, $location, $http, $mdDialog, CoreDB) {
     $scope.feedback = {
-        email: "your@email.com",
-        comment: "Your feedback goes here"
+        email: "",
+        comment: ""
     };
     $scope.files = [];
     $scope.error = false;

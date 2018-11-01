@@ -7,6 +7,7 @@ angular.module('spaFeedbackApp', [
     'ngAnimate',
     'ngCookies',
     'lokijs',
+    'ngImageAppear',
     'core',
     'core.db',
     'Administrator',
