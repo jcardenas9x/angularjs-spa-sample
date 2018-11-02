@@ -42,6 +42,9 @@
                 </md-button>
             </div>
         </md-toolbar>
+        <md-content class="md-padding single-comment-window" ng-show="commentList.length == 0" layout-padding>
+            You currently have no feedback to show.
+        </md-content>
         <md-list flex ng-hide="showSingleComment">
             <md-list-item class="md-3-line item-prettify" ng-repeat="feedback in commentList track by $index" ng-click="highlight(feedback)">
                 <div class="md-list-item-text" layout="column">
@@ -51,7 +54,7 @@
                 </div>
             </md-list-item>
         </md-list>
-        <md-content class="md-padding single-comment-window" ng-show="showSingleComment" layout-padding>
+        <md-content class="md-padding single-comment-window" ng-show="showSingleComment && commentList.length > 0" layout-padding>
             <section>
                 <h2>Feedback sent in from {{ highlightComment.email }}</h2>
                 <h4>Sent at {{ highlightComment.senddate | date:'medium' }}</h4>
@@ -64,8 +67,9 @@
                         class="comment-img"
                         ng-image-appear
                         responsive
-                        loader-img="../assets/ajax-loader.gif"
-                        placeholder>
+                        loader-img="https://i.imgur.com/yCploVt.gif"
+                        placeholder
+                        placeholder-style="background-size: contain;">
                 </div>
             </section>
         </md-content>

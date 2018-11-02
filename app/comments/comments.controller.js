@@ -10,13 +10,12 @@ app.controller('addFeedbackController', function ($scope, $location, $http, $mdD
     $scope.files = [];
     $scope.error = false;
     $scope.msg = "";
-    $scope.submitted = false;
     $scope.loading = false;
 
     var alert = $mdDialog.alert({
         title: "Thanks!",
-        textContent: "Thanks for submitting your feedback to us. We really appreciate it",
-        ok: "Close"
+        textContent: "Thanks for submitting your feedback to us. We really appreciate it.",
+        ok: "Return Home"
     });
 
     $scope.sendFeedback = function () {

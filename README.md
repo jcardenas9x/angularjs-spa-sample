@@ -10,6 +10,8 @@ Example SPA built with very old version of AngularJS (1.5.11)
 * It would be useful if your system already had `node` and `gulp` prepared.
 * If not, navigating to the root of this project and running `npm start` would do.
 * It is also possible to use `ngrok` to tunnel to `localhost:8000`!
+* It used `LokiJS` as in memory database, but for simplicity and for verification, the serialized data is in `LocalStorage`
+* Admin session credentials are stored utilizing `$cookieStore` with admin's username as key. Persists even if you close the tab
 
 ### steps
 

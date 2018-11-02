@@ -31,7 +31,7 @@ app.factory('CoreDB', ['$q', 'Loki',
         function loadHandler () {
             users = _feedbackDB.getCollection('users');
             comments = _feedbackDB.getCollection('comments') || _feedbackDB.addCollection('comments');
-            if (!users) {
+            if (!users || users.count() === 0) {
                 users = _feedbackDB.addCollection('users');
                 users.insert({username:"root",password:"123"});
                 _feedbackDB.saveDatabase();
