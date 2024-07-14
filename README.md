@@ -2,6 +2,8 @@
 
 Example SPA built with very old version of AngularJS (1.5.11)
 
+This repo and SPA was created as part of a take-home assessment for a job interview.
+
 ## running / impl. details
 
 ### foreword
